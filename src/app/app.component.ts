@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import M from 'materialize-css';
+import Chart from 'chart.js';
+
 
 @Component({
   selector: 'app-root',
@@ -27,6 +29,38 @@ export class AppComponent implements OnInit {
     setTimeout(() => {
       M.FormSelect.init(elems, {});
     }, 10);
+
+    const getDetails = await fetch(
+      "https://www.disease.sh/v3/covid-19/historical/all"
+    );
+    const resultHistory = await getDetails.json();
+
+    const canvas = <HTMLCanvasElement>document.getElementById('myChart');
+    const ctx = canvas.getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: Object.keys(resultHistory.cases),
+        datasets: [
+          {
+            label: '# of Votes',
+            data: Object.values(resultHistory.cases),
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true,
+              },
+            },
+          ],
+        },
+      },
+    });
   }
 
   async selectCountry(event:any){
