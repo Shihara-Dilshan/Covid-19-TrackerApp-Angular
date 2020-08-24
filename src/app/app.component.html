@@ -1,1 +1,19 @@
-<app-navbar></app-navbar>
+<div>
+  <app-navbar></app-navbar>
+
+  <!-- Page Layout here -->
+  <div class="row">
+    <div class="col s9">
+      <!-- Grey navigation panel -->
+      <select>
+        <option *ngFor="let country of this.allCountries" value="1">{{country.country}}</option>
+        
+
+      </select>
+    </div>
+
+    <div class="col s3">
+      <!-- Teal page content  -->
+    </div>
+  </div>
+</div>
