@@ -5,11 +5,17 @@
   <div class="row">
     <div class="col s9">
       <!-- Grey navigation panel -->
-      <select>
-        <option *ngFor="let country of this.allCountries" value="1">{{country.country}}</option>
-        
-
+      <select (change)="selectCountry($event)">
+        <option value="worldwide">World Wide</option>
+        <option
+          *ngFor="let country of allCountries"
+          value="{{ country.code }}"
+          >{{ country.country }}</option
+        >
       </select>
+      <app-card></app-card>
+      <app-card></app-card>
+      <app-card></app-card>
     </div>
 
     <div class="col s3">
