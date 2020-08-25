@@ -1,5 +1,7 @@
 # Covid19trackerAngular
 
+Check the production build here : https://covid19trackerangular.netlify.app/
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.7.
 
 ## Development server
