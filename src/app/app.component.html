@@ -3,7 +3,7 @@
 
   <!-- Page Layout here -->
   <div class="row">
-    <div class="col s9">
+    <div class="col s12 m8 l9">
       <!-- Grey navigation panel -->
       <select (change)="selectCountry($event)">
         <option value="worldwide">World Wide</option>
@@ -13,13 +13,16 @@
           >{{ country.country }}</option
         >
       </select>
-      <app-card [countryDetail]="currentCountryDetails"></app-card>
-      <app-recovered [countryDetail]="currentCountryDetails"></app-recovered>
-      <app-death [countryDetail]="currentCountryDetails"></app-death>
+      <div class="row">
+        <app-card [countryDetail]="currentCountryDetails"></app-card>
+        <app-recovered [countryDetail]="currentCountryDetails"></app-recovered>
+        <app-death [countryDetail]="currentCountryDetails"></app-death>
+      </div>
       <canvas id="myChart" width="400" height="150"></canvas>
     </div>
 
-    <div class="col s3">
+    
+    <div class="col s12 m4 l3">
       <!-- Teal page content  -->
       <h5 class="center">Total Cases</h5>
       <table class="striped">
