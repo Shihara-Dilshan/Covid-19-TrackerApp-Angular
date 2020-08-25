@@ -6,13 +6,17 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CardComponent } from './components/card/card.component';
 import { ChartComponent } from './components/chart/chart.component';
+import { RecoveredComponent } from './components/recovered/recovered.component';
+import { DeathComponent } from './components/death/death.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     CardComponent,
-    ChartComponent
+    ChartComponent,
+    RecoveredComponent,
+    DeathComponent
   ],
   imports: [
     BrowserModule,

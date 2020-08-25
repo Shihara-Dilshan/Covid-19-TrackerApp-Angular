@@ -14,8 +14,8 @@
         >
       </select>
       <app-card [countryDetail]="currentCountryDetails"></app-card>
-      <app-card [countryDetail]="currentCountryDetails"></app-card>
-      <app-card [countryDetail]="currentCountryDetails"></app-card>
+      <app-recovered [countryDetail]="currentCountryDetails"></app-recovered>
+      <app-death [countryDetail]="currentCountryDetails"></app-death>
       <canvas id="myChart" width="400" height="150"></canvas>
     </div>
 
@@ -25,27 +25,15 @@
       <table class="striped">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Item Name</th>
-            <th>Item Price</th>
+            <th>Country</th>
+            <th>Cases</th>
           </tr>
         </thead>
 
         <tbody>
-          <tr>
-            <td>Alvin</td>
-            <td>Eclair</td>
-            <td>$0.87</td>
-          </tr>
-          <tr>
-            <td>Alan</td>
-            <td>Jellybean</td>
-            <td>$3.76</td>
-          </tr>
-          <tr>
-            <td>Jonathan</td>
-            <td>Lollipop</td>
-            <td>$7.00</td>
+          <tr *ngFor="let data of tableData">
+            <td>{{ data.name }}</td>
+            <td>{{ data.cases }}</td>
           </tr>
         </tbody>
       </table>

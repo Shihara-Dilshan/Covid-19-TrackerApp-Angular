@@ -13,9 +13,14 @@ export class AppComponent implements OnInit {
   public allCountries: Array<any>;
   public currentCountry:string;
   public currentCountryDetails:object = {};
+  public tableData:Array<any>;
 
   async ngOnInit() {
     const elems = document.querySelectorAll('select');
+
+    const firstLoadAPiCall = await fetch(`https://disease.sh/v3/covid-19/all`);
+    const resultFIrst = await firstLoadAPiCall.json();
+    this.currentCountryDetails = resultFIrst;
 
     const apiCall = await fetch('https://disease.sh/v3/covid-19/countries');
     const result = await apiCall.json();
@@ -26,6 +31,25 @@ export class AppComponent implements OnInit {
         code: detail.countryInfo.iso2,
       };
     });
+
+    this.tableData = result.map( (country:any) => {
+      return{
+        name: country.country,
+        cases: country.cases,
+      }
+    });
+
+    this.tableData = [
+      ...this.tableData
+        .sort((a, b) => {
+          if (a.cases > b.cases) {
+            return -1;
+          } else {
+            return 1;
+          }
+        })
+        .slice(0, 15),
+    ];
     setTimeout(() => {
       M.FormSelect.init(elems, {});
     }, 10);
@@ -43,7 +67,7 @@ export class AppComponent implements OnInit {
         labels: Object.keys(resultHistory.cases),
         datasets: [
           {
-            label: '# of Votes',
+            label: 'Total Cases',
             data: Object.values(resultHistory.cases),
             borderWidth: 1,
           },
